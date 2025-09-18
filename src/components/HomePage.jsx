@@ -1,27 +1,45 @@
-// src/components/HomePage.jsx
-
-// this importing method works but isn't the preferred way
-// imports a lot of extra things that make the App less efficient
-import { Container, Carousel, Row, Col } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import Carousel from 'react-bootstrap/Carousel';
+import axios from 'axios';
 
 function HomePage() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://fakestoreapi.com/products')
+      .then(response => setProducts(response.data));
+  }, []);
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <h3>Hi, welcome to the 🏠 page!</h3>
-          <p>This app will let you see all of the very important fake users JSONPlaceholder gives us.</p>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-         
-        </Col>
-      </Row>
-    </Container>
+    <div className="container-fluid min-vh-100 d-flex flex-column justify-content-center align-items-center">
+  <div className="mx-auto" style={{maxWidth: '700px', width: '100%'}}>
+        <div className="text-center mb-4">
+          <h3>Welcome to the 🏠 page!</h3>
+          <p>Check out our featured products below:</p>
+        </div>
+        <Carousel>
+          {products.map(product => (
+            <Carousel.Item key={product.id}>
+              <img
+                className="d-block w-100 img-fluid"
+                src={product.image}
+                alt={product.title}
+                style={{ maxHeight: '300px', objectFit: 'contain' }}
+              />
+              <Carousel.Caption>
+                <h5>{product.title}</h5>
+                <p>${product.price}</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </div>
+    </div>
+ 
   );
 }
+
+ 
+
 
 export default HomePage;

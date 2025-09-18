@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
+import ButtonBar from './ButtonBar';
 // import { useParams } from 'react-router-dom';
 function Products() {
   // const { userId } = useParams();   
@@ -50,16 +51,17 @@ function Products() {
 
   return (
     <Container>
+      
       <h3>Product List</h3>
       <Row>
         {products.map(product => (
-          <Col key={product.id} className="mt-4">
-            <Card style={{ width: '18rem' }} >
+          <Col key={product.id} xs={12} sm={6} md={4} lg={3} className="mt-4 d-flex align-items-stretch">
+            <Card className="w-100 shadow-sm">
+              <Card.Img variant="top" src={product.image} className="img-fluid" style={{ maxHeight: '200px', objectFit: 'contain' }} />
               <Card.Body>
                 <Card.Title>{product.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">👤 {product.price}</Card.Subtitle>
-                <Card.Text className="mt-3">📞 {product.description}</Card.Text>
-                <Card.Img variant="top" src={product.image} />
+                <Card.Subtitle className="mb-2 text-muted">${product.price}</Card.Subtitle>
+                <Card.Text className="mt-3">{product.description}</Card.Text>
                 <Button href={`/buy/${product.id}`}>Buy</Button>
               </Card.Body>
             </Card>
