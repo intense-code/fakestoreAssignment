@@ -1,3 +1,7 @@
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #181818 0%, #232526 100%) !important;
+}
 /* Make React Bootstrap carousel arrows black */
 .carousel-control-next-icon,
 .carousel-control-prev-icon {

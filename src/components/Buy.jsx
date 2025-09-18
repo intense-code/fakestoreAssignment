@@ -26,34 +26,61 @@ function Buy() {
 
   if (loading) {
     return (
-      <Container>
+      <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column' }}>
         <ButtonBar />
-        <h3>
-          <Spinner animation="border" variant="info" role="status" />
-          Loading Product...
-        </h3>
-      </Container>
+        <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '32px 0' }}>
+          <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(92vw, 720px)' }}>
+            <h3>
+              <Spinner animation="border" variant="info" role="status" />
+              Loading Product...
+            </h3>
+          </div>
+        </main>
+        <footer className="text-center py-4" style={{ background: '#111', color: '#bbb', letterSpacing: '1px', fontSize: '1.05rem' }}>
+          &copy; {new Date().getFullYear()} FakeStore. All rights reserved.
+        </footer>
+      </div>
     );
   }
 
-  if (error) return <Container><p>{error}</p></Container>;
+  if (error) return (
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column' }}>
+      <ButtonBar />
+      <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '32px 0' }}>
+        <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(92vw, 720px)' }}>
+          <p>{error}</p>
+        </div>
+      </main>
+      <footer className="text-center py-4" style={{ background: '#111', color: '#bbb', letterSpacing: '1px', fontSize: '1.05rem' }}>
+        &copy; {new Date().getFullYear()} FakeStore. All rights reserved.
+      </footer>
+    </div>
+  );
   if (!product) return null;
 
   return (
-    <Container className="mt-5">
-      <div className="row justify-content-center">
-        <div className="col-12 col-md-8 col-lg-6">
-          <Card className="shadow-sm">
-            <Card.Img variant="top" src={product.image} className="img-fluid" style={{ maxHeight: '300px', objectFit: 'contain' }} />
-            <Card.Body>
-              <Card.Title>{product.title}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">${product.price}</Card.Subtitle>
-              <Card.Text>{product.description}</Card.Text>
-            </Card.Body>
-          </Card>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column' }}>
+      <ButtonBar />
+      <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '32px 0' }}>
+        <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(92vw, 720px)' }}>
+          <div className="row justify-content-center">
+            <div className="col-12 col-md-8 col-lg-6">
+              <Card className="shadow-sm">
+                <Card.Img variant="top" src={product.image} className="img-fluid" style={{ maxHeight: '300px', objectFit: 'contain' }} />
+                <Card.Body>
+                  <Card.Title style={{color: '#fff'}}>{product.title}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">${product.price}</Card.Subtitle>
+                  <Card.Text style={{color: '#ccc'}}>{product.description}</Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+          </div>
         </div>
-      </div>
-    </Container>
+      </main>
+      <footer className="text-center py-4" style={{ background: '#111', color: '#bbb', letterSpacing: '1px', fontSize: '1.05rem' }}>
+        &copy; {new Date().getFullYear()} FakeStore. All rights reserved.
+      </footer>
+    </div>
   );
 }
 

@@ -1,8 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import Products from './components/Products';
-import NotFound from './components/NotFound';
-import ButtonBar from './components/ButtonBar';
+import NotFound from './components/NotFound'; 
 import Buy from './components/Buy'; 
 import CenteredPage from './components/CenteredPage';
 {/* added code stops here */}			
