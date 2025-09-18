@@ -51,7 +51,7 @@ function Products() {
 
   return (
     <Container>
-      
+      <ButtonBar />
       <h3>Product List</h3>
       <Row>
         {products.map(product => (

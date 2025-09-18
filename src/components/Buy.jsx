@@ -4,6 +4,7 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
+import ButtonBar from './ButtonBar';
 
 function Buy() {
   const { id } = useParams();
@@ -26,6 +27,7 @@ function Buy() {
   if (loading) {
     return (
       <Container>
+        <ButtonBar />
         <h3>
           <Spinner animation="border" variant="info" role="status" />
           Loading Product...

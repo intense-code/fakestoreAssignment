@@ -1,45 +1,49 @@
-import { useState, useEffect } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
-import axios from 'axios';
+// HomePage.jsx (or page.tsx)
+// Make sure Bootstrap CSS is loaded once in your app entry:
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
-function HomePage() {
+import { useEffect, useState } from "react";
+import Carousel from "react-bootstrap/Carousel"; 
+import axios from "axios";
+import ButtonBar from "./ButtonBar";
+
+
+
+export default function HomePage() {
   const [products, setProducts] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    axios.get('https://fakestoreapi.com/products')
-      .then(response => setProducts(response.data));
+    axios.get("https://fakestoreapi.com/products").then((r) => setProducts(r.data));
   }, []);
 
   return (
-    <div className="container-fluid min-vh-100 d-flex flex-column justify-content-center align-items-center">
-  <div className="mx-auto" style={{maxWidth: '700px', width: '100%'}}>
-        <div className="text-center mb-4">
-          <h3>Welcome to the 🏠 page!</h3>
-          <p>Check out our featured products below:</p>
-        </div>
-        <Carousel>
-          {products.map(product => (
-            <Carousel.Item key={product.id}>
-              <img
-                className="d-block w-100 img-fluid"
-                src={product.image}
-                alt={product.title}
-                style={{ maxHeight: '300px', objectFit: 'contain' }}
-              />
-              <Carousel.Caption>
-                <h5>{product.title}</h5>
-                <p>${product.price}</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          ))}
-        </Carousel>
+
+    <div className="center-viewport" style={{ position:'fixed', inset:0, display:'grid', placeItems:'center' }}>
+  <ButtonBar />
+  <div className="d-flex flex-column align-items-center" style={{ width:'min(92vw, 720px)' }}>
+    <Carousel className="w-100" activeIndex={activeIndex} onSelect={setActiveIndex}>
+      {products.map((p) => (
+        <Carousel.Item key={p.id}>
+          <img
+            className="d-block w-100 img-fluid"
+            src={p.image}
+            alt={p.title}
+            style={{ maxHeight: "320px", objectFit: "contain" }}
+          />
+        </Carousel.Item>
+      ))}
+    </Carousel>
+    {/* Show caption for the currently active product below the carousel */}
+    {products.length > 0 && (
+      <div className="text-center mt-3">
+        <h5>{products[activeIndex].title}</h5>
+        <p>${products[activeIndex].price}</p>
       </div>
-    </div>
- 
+    )}
+  </div>
+</div>
+
+    
   );
 }
-
- 
-
-
-export default HomePage;

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Badge from 'react-bootstrap/Badge';
-
+import ButtonBar from './ButtonBar';
 function NotFound() {
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState(10);
@@ -24,6 +24,7 @@ function NotFound() {
 
   return (
     <Container>
+      <ButtonBar />
       <h2>404 Not Found</h2>
       <p>I am sorry, that location does not exist 😭</p>
       <p><b>You will be redirected to the home page in...</b></p>

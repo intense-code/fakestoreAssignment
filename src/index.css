@@ -12,7 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+/* globals.css */
+html, body, #root, #__next { height: 100%; }
+ 
 a {
   font-weight: 500;
   color: #646cff;

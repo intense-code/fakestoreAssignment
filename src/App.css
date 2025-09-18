@@ -1,3 +1,8 @@
+/* Make React Bootstrap carousel arrows black */
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  filter: invert(1) brightness(0.2);
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
