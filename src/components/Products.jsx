@@ -97,6 +97,7 @@ function Products() {
                         const stored = localStorage.getItem('cart');
                         const cart = stored ? JSON.parse(stored) : [];
                         localStorage.setItem('cart', JSON.stringify([...cart, product]));
+                        window.dispatchEvent(new Event('cartUpdated'));
                       }}
                     >Add to Cart</Button>
                   </Card.Body>

@@ -23,7 +23,16 @@ function App() {
       setCartCount(updatedCart.length);
     };
     window.addEventListener('storage', handleStorage);
-    return () => window.removeEventListener('storage', handleStorage);
+    // Listen for custom cart update event
+    const handleCartUpdate = (e) => {
+      const updatedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+      setCartCount(updatedCart.length);
+    };
+    window.addEventListener('cartUpdated', handleCartUpdate);
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener('cartUpdated', handleCartUpdate);
+    };
   }, []);
 
   return (

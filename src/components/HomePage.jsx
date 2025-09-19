@@ -5,8 +5,7 @@
 import { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel"; 
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import ButtonBar from "./ButtonBar";
+import axios from "axios"; 
 
 
 
