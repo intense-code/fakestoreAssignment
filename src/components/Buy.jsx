@@ -1,0 +1,98 @@
+// Buy.jsx - Displays details for a single product and allows adding to cart
+// Uses fakestoreapi.com/products/:id and localStorage for cart
+import { useParams } from 'react-router-dom'; // Get product ID from URL
+import { useState, useEffect } from 'react'; // React hooks
+import axios from 'axios'; // HTTP requests
+import Card from 'react-bootstrap/Card'; // Bootstrap card UI
+import Spinner from 'react-bootstrap/Spinner'; // Loading spinner
+import ButtonBar from './ButtonBar'; // Navigation bar
+  // State: product, loading, error
+
+function Buy() {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch product details from fakestoreapi.com/products/:id
+  useEffect(() => {
+    axios.get(`https://fakestoreapi.com/products/${id}`)
+      .then(response => {
+        setProduct(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError(`Failed to fetch product: ${error.message}`);
+        setLoading(false);
+      });
+  }, [id]);
+
+  // Show loading spinner while fetching product
+  if (loading) {
+    return (
+  <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw' }}>
+      
+        <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '3vw 0' }}>
+          <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(98vw, 1100px)', maxWidth: '1100px' }}>
+            <h3>
+              <Spinner animation="border" variant="info" role="status" />
+              Loading Product...
+            </h3>
+          </div>
+        </main>
+        <footer className="text-center py-4" style={{ background: '#111', color: '#bbb', letterSpacing: '1px', fontSize: '1.05rem' }}>
+          &copy; {new Date().getFullYear()} FakeStore. All rights reserved.
+        </footer>
+      </div>
+    );
+  }
+
+  // Show error message if API fails
+  if (error) return (
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw' }}>
+    
+      <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '3vw 0' }}>
+        <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(98vw, 1100px)', maxWidth: '1100px' }}>
+          <p>{error}</p>
+        </div>
+      </main>
+      <footer className="text-center py-4" style={{ background: '#111', color: '#bbb', letterSpacing: '1px', fontSize: '1.05rem' }}>
+        &copy; {new Date().getFullYear()} FakeStore. All rights reserved.
+      </footer>
+    </div>
+  );
+  if (!product) return null;
+
+  // Render product details and allow adding to cart
+  return (
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw' }}>
+ 
+      <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '3vw 0' }}>
+        <div className="shadow-lg rounded-4 p-4 d-flex justify-content-center align-items-center" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(98vw, 1100px)', maxWidth: '1100px' }}>
+          <div style={{ width: '100%', maxWidth: '500px' }}>
+            <Card className="shadow-sm">
+              <Card.Img variant="top" src={product.image} className="img-fluid" style={{ maxHeight: '300px', objectFit: 'contain' }} />
+              <Card.Body>
+                <Card.Title style={{color: '#111'}}>{product.title}</Card.Title>
+                <Card.Text style={{color: '#222'}}>{product.category}</Card.Text>
+                <Card.Subtitle className="mb-2 text-muted" style={{color: '#222'}}>${product.price}</Card.Subtitle>
+                <Card.Text style={{color: '#222'}}>{product.description}</Card.Text>
+                <button className="btn btn-success w-100 mt-3" onClick={() => {
+                  const stored = localStorage.getItem('cart');
+                  const cart = stored ? JSON.parse(stored) : [];
+                  localStorage.setItem('cart', JSON.stringify([...cart, product]));
+                  window.dispatchEvent(new Event('cartUpdated'));
+                }}>Add to Cart</button>
+              </Card.Body>
+            </Card>
+          </div>
+        </div>
+      </main>
+      <footer className="text-center py-4" style={{ background: '#111', color: '#bbb', letterSpacing: '1px', fontSize: '1.05rem' }}>
+        &copy; {new Date().getFullYear()} FakeStore. All rights reserved.
+      </footer>
+    </div>
+  );
+}
+
+export default Buy;
