@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import Container from 'react-bootstrap/Container';
+import axios from 'axios'; 
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
 import ButtonBar from './ButtonBar';
@@ -26,10 +25,10 @@ function Buy() {
 
   if (loading) {
     return (
-      <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column' }}>
+  <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw' }}>
         <ButtonBar />
-        <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '32px 0' }}>
-          <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(92vw, 720px)' }}>
+        <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '3vw 0' }}>
+          <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(98vw, 1100px)', maxWidth: '1100px' }}>
             <h3>
               <Spinner animation="border" variant="info" role="status" />
               Loading Product...
@@ -44,10 +43,10 @@ function Buy() {
   }
 
   if (error) return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw' }}>
       <ButtonBar />
-      <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '32px 0' }}>
-        <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(92vw, 720px)' }}>
+      <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '3vw 0' }}>
+        <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(98vw, 1100px)', maxWidth: '1100px' }}>
           <p>{error}</p>
         </div>
       </main>
@@ -59,22 +58,20 @@ function Buy() {
   if (!product) return null;
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw' }}>
       <ButtonBar />
-      <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '32px 0' }}>
-        <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(92vw, 720px)' }}>
-          <div className="row justify-content-center">
-            <div className="col-12 col-md-8 col-lg-6">
-              <Card className="shadow-sm">
-                <Card.Img variant="top" src={product.image} className="img-fluid" style={{ maxHeight: '300px', objectFit: 'contain' }} />
-                <Card.Body>
-                  <Card.Title style={{color: '#111'}}>{product.title}</Card.Title>
-                  <Card.Text  style={{marginLeft:"50px",color: '#222'}}>{product.category}</Card.Text>
-                  <Card.Subtitle className="mb-2 text-muted" style={{color: '#222'}}>${product.price}</Card.Subtitle>
-                  <Card.Text style={{color: '#222'}}>{product.description}</Card.Text>
-                </Card.Body>
-              </Card>
-            </div>
+      <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '3vw 0' }}>
+        <div className="shadow-lg rounded-4 p-4 d-flex justify-content-center align-items-center" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(98vw, 1100px)', maxWidth: '1100px' }}>
+          <div style={{ width: '100%', maxWidth: '500px' }}>
+            <Card className="shadow-sm">
+              <Card.Img variant="top" src={product.image} className="img-fluid" style={{ maxHeight: '300px', objectFit: 'contain' }} />
+              <Card.Body>
+                <Card.Title style={{color: '#111'}}>{product.title}</Card.Title>
+                <Card.Text style={{color: '#222'}}>{product.category}</Card.Text>
+                <Card.Subtitle className="mb-2 text-muted" style={{color: '#222'}}>${product.price}</Card.Subtitle>
+                <Card.Text style={{color: '#222'}}>{product.description}</Card.Text>
+              </Card.Body>
+            </Card>
           </div>
         </div>
       </main>

@@ -1,6 +1,12 @@
 import { useState } from 'react';
+import ReadDelete from './ReadDelete';
+import Update from './Update';
+
 
 function Create() {
+  const [activeView, setActiveView] = useState('create');
+
+  // --- Create logic ---
   const [product, setProduct] = useState({
     title: '',
     price: '',
@@ -60,80 +66,53 @@ function Create() {
           ID: {data.id}<br/>
           Title: {data.title}<br/>
           Price: {data.price}<br/>
-          Description: {data.description}<br/>
           Category: {data.category}<br/>
           Image: {data.image}<br/>
+          Description: {data.description}
         </div>
       );
-    } catch (e) {
-      setError(e.message);
+    } catch (error) {
+      setError(error.message);
+      setSuccess('');
     }
   };
 
   return (
-    <div>
-      <h1>Create New Product</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title:</label><br/>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={product.title}
-            onChange={handleInputChange}
-            placeholder="Enter title"
-          />
+    <div className="container ">
+      
+
+
+        <div >
+          <h2>Create New Product</h2>
+          <form onSubmit={handleSubmit} className="mb-3">
+            <div className="mb-3">
+              <label htmlFor="title" className="form-label">Title</label>
+              <input type="text" className="form-control" id="title" name="title" value={product.title} onChange={handleInputChange} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="price" className="form-label">Price</label>
+              <input type="text" className="form-control" id="price" name="price" value={product.price} onChange={handleInputChange} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="category" className="form-label">Category</label>
+              <input type="text" className="form-control" id="category" name="category" value={product.category} onChange={handleInputChange} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="image" className="form-label">Image URL</label>
+              <input type="text" className="form-control" id="image" name="image" value={product.image} onChange={handleInputChange} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="description" className="form-label">Description</label>
+              <textarea className="form-control" id="description" name="description" value={product.description} onChange={handleInputChange} />
+            </div>
+            {error && <div className="alert alert-danger">{error}</div>}
+            {success && <div className="alert alert-success">{success}</div>}
+            <button type="submit" className="btn btn-primary">Create Product</button>
+          </form>
         </div>
-        <div>
-          <label htmlFor="price">Price:</label><br/>
-          <input
-            type="text"
-            id="price"
-            name="price"
-            value={product.price}
-            onChange={handleInputChange}
-            placeholder="Enter the price"
-          />
-        </div>
-        <div>
-          <label htmlFor="description">Description:</label><br/>
-          <textarea
-            id="description"
-            name="description"
-            value={product.description}
-            onChange={handleInputChange}
-            placeholder="Enter Description"
-          />
-        </div>
-        <div>
-          <label htmlFor="category">Category:</label><br/>
-          <input
-            type="text"
-            id="category"
-            name="category"
-            value={product.category}
-            onChange={handleInputChange}
-            placeholder="Enter Category"
-          />
-        </div>
-        <div>
-          <label htmlFor="image">Image:</label><br/>
-          <input
-            type="text"
-            id="image"
-            name="image"
-            value={product.image}
-            onChange={handleInputChange}
-            placeholder="Enter Image URL"
-          />
-        </div>
-        <br/>
-        <button type="submit">Create Product</button>
-      </form>
-      {/* Display validation error or success message */}
-      {error && <div style={{ color: 'red' }}>{error}</div>}
-      {success && <div style={{ color: 'green' }}>{success}</div>}
+      
+
+    
     </div>
   );
 }
