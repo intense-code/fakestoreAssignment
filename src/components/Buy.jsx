@@ -1,9 +1,12 @@
-import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import axios from 'axios'; 
-import Card from 'react-bootstrap/Card';
-import Spinner from 'react-bootstrap/Spinner';
-import ButtonBar from './ButtonBar';
+// Buy.jsx - Displays details for a single product and allows adding to cart
+// Uses fakestoreapi.com/products/:id and localStorage for cart
+import { useParams } from 'react-router-dom'; // Get product ID from URL
+import { useState, useEffect } from 'react'; // React hooks
+import axios from 'axios'; // HTTP requests
+import Card from 'react-bootstrap/Card'; // Bootstrap card UI
+import Spinner from 'react-bootstrap/Spinner'; // Loading spinner
+import ButtonBar from './ButtonBar'; // Navigation bar
+  // State: product, loading, error
 
 function Buy() {
   const { id } = useParams();
@@ -11,6 +14,7 @@ function Buy() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch product details from fakestoreapi.com/products/:id
   useEffect(() => {
     axios.get(`https://fakestoreapi.com/products/${id}`)
       .then(response => {
@@ -23,6 +27,7 @@ function Buy() {
       });
   }, [id]);
 
+  // Show loading spinner while fetching product
   if (loading) {
     return (
   <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw' }}>
@@ -42,6 +47,7 @@ function Buy() {
     );
   }
 
+  // Show error message if API fails
   if (error) return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw' }}>
     
@@ -57,6 +63,7 @@ function Buy() {
   );
   if (!product) return null;
 
+  // Render product details and allow adding to cart
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw' }}>
  
