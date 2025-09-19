@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'; // Bootstrap grid
 import Card from 'react-bootstrap/Card'; // Bootstrap card UI
 import Button from 'react-bootstrap/Button'; // Bootstrap button
 import Spinner from 'react-bootstrap/Spinner'; // Loading spinner
-import ButtonBar from './ButtonBar'; // Navigation bar
+ 
 // Products.jsx - Displays product list and allows adding to cart
 // Uses fakestoreapi.com/products and localStorage for cart
 // src/components/products.js
@@ -20,7 +20,7 @@ function Products() {
 
   // Pagination state and logic
   const [page, setPage] = useState(1);
-  const productsPerPage = 6;
+  const productsPerPage = 6; // To see the paganation
   const totalPages = Math.ceil(products.length / productsPerPage);
   const paginatedProducts = products.slice((page - 1) * productsPerPage, page * productsPerPage);
 

@@ -1,3 +1,5 @@
+#Deployed on :
+ecommercestorefaked.netlify.app
 📝 Module Project: FakeStore E-Commerce App
 📌 Project Overview
  In this project, you will build a FakeStore E-Commerce App using React, React Router, and FakeStoreAPI. Your app will allow users to view, create, update, and delete products dynamically using API calls. This project reinforces state management, API interactions, React Router for navigation, and component-based architecture.
