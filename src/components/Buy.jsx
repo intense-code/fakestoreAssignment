@@ -68,9 +68,10 @@ function Buy() {
               <Card className="shadow-sm">
                 <Card.Img variant="top" src={product.image} className="img-fluid" style={{ maxHeight: '300px', objectFit: 'contain' }} />
                 <Card.Body>
-                  <Card.Title style={{color: '#fff'}}>{product.title}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">${product.price}</Card.Subtitle>
-                  <Card.Text style={{color: '#ccc'}}>{product.description}</Card.Text>
+                  <Card.Title style={{color: '#111'}}>{product.title}</Card.Title>
+                  <Card.Text  style={{marginLeft:"50px",color: '#222'}}>{product.category}</Card.Text>
+                  <Card.Subtitle className="mb-2 text-muted" style={{color: '#222'}}>${product.price}</Card.Subtitle>
+                  <Card.Text style={{color: '#222'}}>{product.description}</Card.Text>
                 </Card.Body>
               </Card>
             </div>

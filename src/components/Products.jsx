@@ -82,6 +82,7 @@ function Products() {
                   <Card.Img variant="top" src={product.image} className="img-fluid" style={{ maxHeight: '200px', objectFit: 'contain' }} />
                   <Card.Body>
                     <Card.Title style={{color: '#111'}}>{product.title}</Card.Title>
+                    <Card.Text className="mt-3" style={{marginLeft:"50px",color: '#222'}}>{product.category}</Card.Text>
                     <Card.Subtitle className="mb-2 text-muted" style={{color: '#222'}}>${product.price}</Card.Subtitle>
                     <Card.Text className="mt-3" style={{color: '#222'}}>{product.description}</Card.Text>
                     <Button href={`/buy/${product.id}`}>Buy</Button>

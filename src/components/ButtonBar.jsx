@@ -34,12 +34,12 @@ function ButtonBar() {
               onMouseOut={e => (e.currentTarget.style.transform = 'scale(1)')}
             >Products</Button>
             <Button
-              href={'/about'}
+              href={'/crud'}
               variant="success"
               style={{ fontWeight: 600, fontSize: '1.1rem', boxShadow: '0 2px 8px rgba(0,0,0,0.10)', transition: 'transform 0.2s', margin: '0 6px' }}
               onMouseOver={e => (e.currentTarget.style.transform = 'scale(1.08)')}
               onMouseOut={e => (e.currentTarget.style.transform = 'scale(1)')}
-            >About</Button>
+            >CRUD Products</Button>
           </ButtonGroup>
         </div>
       </div>
