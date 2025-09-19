@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
+import { useNavigate, Link } from 'react-router-dom'; 
 import Badge from 'react-bootstrap/Badge';
 import ButtonBar from './ButtonBar';
 function NotFound() {
@@ -24,7 +23,7 @@ function NotFound() {
 
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column' }}>
-      <ButtonBar />
+    
       <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '32px 0' }}>
         <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(92vw, 720px)' }}>
           <h2 className="text-center" style={{color: '#fff'}}>404 Not Found</h2>

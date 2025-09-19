@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
-function ButtonBar() {
+function ButtonBar({ cartCount }) {
   return (
     <div className="container-fluid p-0 m-0">
       <div className="d-flex justify-content-center align-items-center my-4" style={{ minHeight: '56px' }}>
@@ -40,6 +40,13 @@ function ButtonBar() {
               onMouseOver={e => (e.currentTarget.style.transform = 'scale(1.08)')}
               onMouseOut={e => (e.currentTarget.style.transform = 'scale(1)')}
             >CRUD Products</Button>
+            <Button
+              href={'/cart'}
+              variant="warning"
+              style={{ fontWeight: 600, fontSize: '1.1rem', boxShadow: '0 2px 8px rgba(0,0,0,0.10)', transition: 'transform 0.2s', margin: '0 6px', position: 'relative' }}
+              onMouseOver={e => (e.currentTarget.style.transform = 'scale(1.08)')}
+              onMouseOut={e => (e.currentTarget.style.transform = 'scale(1)')}
+            >Cart{cartCount > 0 && <span style={{ position: 'absolute', top: '-8px', right: '-18px', background: '#dc3545', color: '#fff', borderRadius: '50%', padding: '2px 8px', fontSize: '0.9rem', fontWeight: 700 }}>{cartCount}</span>}</Button>
           </ButtonGroup>
         </div>
       </div>

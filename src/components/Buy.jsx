@@ -26,7 +26,7 @@ function Buy() {
   if (loading) {
     return (
   <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw' }}>
-        <ButtonBar />
+      
         <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '3vw 0' }}>
           <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(98vw, 1100px)', maxWidth: '1100px' }}>
             <h3>
@@ -44,7 +44,7 @@ function Buy() {
 
   if (error) return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw' }}>
-      <ButtonBar />
+    
       <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '3vw 0' }}>
         <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(98vw, 1100px)', maxWidth: '1100px' }}>
           <p>{error}</p>
@@ -59,7 +59,7 @@ function Buy() {
 
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw' }}>
-      <ButtonBar />
+ 
       <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '3vw 0' }}>
         <div className="shadow-lg rounded-4 p-4 d-flex justify-content-center align-items-center" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(98vw, 1100px)', maxWidth: '1100px' }}>
           <div style={{ width: '100%', maxWidth: '500px' }}>
@@ -70,6 +70,11 @@ function Buy() {
                 <Card.Text style={{color: '#222'}}>{product.category}</Card.Text>
                 <Card.Subtitle className="mb-2 text-muted" style={{color: '#222'}}>${product.price}</Card.Subtitle>
                 <Card.Text style={{color: '#222'}}>{product.description}</Card.Text>
+                <button className="btn btn-success w-100 mt-3" onClick={() => {
+                  const stored = localStorage.getItem('cart');
+                  const cart = stored ? JSON.parse(stored) : [];
+                  localStorage.setItem('cart', JSON.stringify([...cart, product]));
+                }}>Add to Cart</button>
               </Card.Body>
             </Card>
           </div>

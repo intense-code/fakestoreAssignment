@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import Create from './crud/Create';
 import ReadDelete from './crud/ReadDelete';
-import Update from './crud/Update';
-import ButtonBar from './ButtonBar';
+import Update from './crud/Update'; 
 
 function Crud() {
 	const [activeView, setActiveView] = useState('create');
 
 	return (
 			<div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw', color:'white'}}>
-				<ButtonBar />
+			 
 				<main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '3vw 0' }}>
 					<div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(98vw, 1100px)', maxWidth: '1100px' }}>
 					<div className="mb-4 d-flex justify-content-center">

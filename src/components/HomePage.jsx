@@ -21,7 +21,7 @@ export default function HomePage() {
 
   return (
   <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #181818 0%, #232526 100%)', display: 'flex', flexDirection: 'column', width: '100vw' }}>
-      <ButtonBar />
+   
       <main className="flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ width: '100%', padding: '3vw 0' }}>
         <div className="shadow-lg rounded-4 p-4" style={{ background: 'rgba(30,30,30,0.95)', width: 'min(98vw, 1100px)', maxWidth: '1100px' }}>
           <Carousel className="w-100" activeIndex={activeIndex} onSelect={setActiveIndex}>
