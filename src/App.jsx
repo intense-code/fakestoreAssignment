@@ -5,7 +5,12 @@ import Products from './components/Products';
 import NotFound from './components/NotFound'; 
 import Buy from './components/Buy'; 
 import Crud from './components/Crud';
-{/* added code stops here */}			
+import './App.css';
+import Login from "./components/Login";
+import Register from "./components/Register";
+import PrivateRoute from "./utils/PrivateRoute";
+import Dashboard from "./components/Dashboard";
+import ConditionalHome from "./components/ConditionalHome";
 
 import ButtonBar from './components/ButtonBar';
 import Cart from './components/Cart';
@@ -34,19 +39,28 @@ function App() {
       window.removeEventListener('cartUpdated', handleCartUpdate);
     };
   }, []);
-
   return (
-    <div className="App"> 
+    <> 
       {window.location.pathname !== '/cart' && <ButtonBar cartCount={cartCount} />}
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/buy/:id" element={<Buy />} />
-        <Route path="/crud" element={<Crud />} />
-        <Route path="/cart" element={<Cart />} />
+        {/*Public Pages */}
         <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<ConditionalHome />} />
+        <Route path="/login" element={<Login />} /> 
+        <Route path="/register" element={<Register />} /> 
+                
+         {/* Session Protected routes */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/private" element={<Products />} />
+          <Route path="/protected" element={<Products />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/buy/:id" element={<Buy />} />
+          <Route path="/crud" element={<Crud />} />
+          <Route path="/cart" element={<Cart />} />
+        </Route>
       </Routes>
-    </div>
+    </>
   );
 }
 
