@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import {Link, Navigate, Outlet } from 'react-router-dom';
 import AxiosWithAuth from './AxiosWithAuth';
 
 const PrivateRoute = () => {
@@ -64,7 +64,9 @@ const PrivateRoute = () => {
           fontSize: '14px',
           fontWeight: 'bold'
         }}>
-          Welcome, {user.username}
+          <Link to="/dashboard" style={{ textDecoration: 'none', color: '#333' }}>
+            Welcome, {user.username}
+          </Link>
         </div>
       )}
       <Outlet />

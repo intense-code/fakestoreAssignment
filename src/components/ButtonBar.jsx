@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-
+import handleLogout from '../utils/handleLogout';
 function ButtonBar({ cartCount }) {
   return (
     <div className="container-fluid p-0 m-0">
@@ -47,6 +47,19 @@ function ButtonBar({ cartCount }) {
               onMouseOver={e => (e.currentTarget.style.transform = 'scale(1.08)')}
               onMouseOut={e => (e.currentTarget.style.transform = 'scale(1)')}
             >Cart{cartCount > 0 && <span style={{ position: 'absolute', top: '-8px', right: '-18px', background: '#dc3545', color: '#fff', borderRadius: '50%', padding: '2px 8px', fontSize: '0.9rem', fontWeight: 700 }}>{cartCount}</span>}</Button>
+          <Button 
+        onClick={handleLogout}
+        style={{
+          backgroundColor: "#f44336",
+          color: "white",
+          padding: "10px 20px",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer"
+        }}
+      >
+        Logout
+      </Button>
           </ButtonGroup>
         </div>
       </div>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import { isAuthed } from '../utils/auth';
 import HomePage from './HomePage';
 import AxiosWithAuth from '../utils/AxiosWithAuth';
-
+import Dashboard from './Dashboard';
 const ConditionalHome = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -56,7 +57,9 @@ const ConditionalHome = () => {
             fontSize: '14px',
             fontWeight: 'bold'
           }}>
-            Welcome, {user.username}
+            <Link to="/dashboard" style={{ textDecoration: 'none', color: '#333' }}>
+              Welcome, {user.username}
+            </Link>
           </div>
         )}
         <HomePage />

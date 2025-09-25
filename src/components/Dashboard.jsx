@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AxiosWithAuth from '../utils/AxiosWithAuth';
-
+import handleLogout from '../utils/handleLogout';
 const Dashboard = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [sessionInfo, setSessionInfo] = useState(null);
@@ -24,22 +24,6 @@ const Dashboard = () => {
       });
   }, []);
 
-  const handleLogout = () => {
-    AxiosWithAuth()
-      .post("/auth/logout")
-      .then(() => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("userInfo");
-        window.location.href = "/";
-      })
-      .catch(err => {
-        console.error("Logout error:", err);
-        // Force logout even if API call fails
-        localStorage.removeItem("token");
-        localStorage.removeItem("userInfo");
-        window.location.href = "/";
-      });
-  };
 
   if (!userInfo) {
     return <div>Loading...</div>;
