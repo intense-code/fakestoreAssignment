@@ -49,3 +49,87 @@ body {
 .read-the-docs {
   color: #888;
 }
+
+/* Terms checkbox styling */
+.terms-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin: 1px 0;
+}
+
+.terms-container input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  border: solid 1px black;
+  margin: 0; /* Remove margin since we're using gap */
+}
+
+.terms-container label {
+  margin: 0;
+  font-weight: normal;
+  text-align: left;
+}
+
+/* ...existing code... */
+div.App{
+  background-color:rgb(235, 229, 229);
+  border:solid 2px rgb(21, 42, 158);
+  border-radius:10px;
+  padding:20px;
+  box-shadow: 0 4px 4px rgba(24, 76, 218, 0.363);
+  margin:20px;
+
+}
+
+/* Fixed App styling */
+.App {
+  width: 100%;
+  max-width: 500px; /* Reasonable max width instead of 10% */
+  margin: 0 auto;
+  min-height: 80vh; /* Give it some height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Style for forms */
+.App form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.App input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.App button {
+  padding: 10px 20px;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.App button:hover {
+  background-color: #5a5fcf;
+}
+
+.App label {
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
