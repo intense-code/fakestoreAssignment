@@ -4,7 +4,9 @@
  */
 // knex migrate:make create_sessions
 exports.up = async function (knex) {
-  await knex.schema.createTable("sessions", (t) => {
+    return knex.schema.hasTable('sessions').then(async function (exists) {
+    if (!exists) {
+         await knex.schema.createTable("sessions", (t) => {
     t.string("id").primary(); // jti (uuid)
     t.integer("user_id").notNullable().references("id").inTable("users").onDelete("CASCADE");
     t.text("user_agent");
@@ -18,14 +20,20 @@ exports.up = async function (knex) {
   // A view that shows currently "online" users (seen within 5 minutes, not revoked, not expired)
   await knex.raw(`
     CREATE VIEW online_users AS
-    SELECT u.id AS user_id, u.username, s.last_seen_at
+    SELECT 
+      u.id AS user_id, 
+      u.username, 
+      MAX(s.last_seen_at) AS last_seen_at
     FROM users u
     JOIN sessions s ON s.user_id = u.id
     WHERE s.revoked_at IS NULL
       AND s.expires_at > CURRENT_TIMESTAMP
-      AND s.last_seen_at > DATETIME('now','-5 minutes')
-    GROUP BY u.id
+      AND s.last_seen_at > NOW() - INTERVAL '5 minutes'
+    GROUP BY u.id, u.username
   `);
+    }
+  });
+
 };
 
 /**

@@ -3,11 +3,13 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-return knex.schema.createTable("users", tbl => {
+    return knex.schema.hasTable('users').then(function (exists) {
+    if (!exists) {
+    return knex.schema.createTable("users", tbl => {
         tbl.increments();
-        tbl.string("username", 10).notNullable().unique().index();
-        tbl.string("password", 10).notNullable();
-        tbl.string("department", 10).notNullable();
+        tbl.string("username", 50).notNullable().unique().index();
+        tbl.string("password", 150).notNullable();
+        tbl.string("department", 50).notNullable();
         tbl
           .integer("role")
           .unsigned()
@@ -17,6 +19,9 @@ return knex.schema.createTable("users", tbl => {
           .defaultTo(2);
         tbl.timestamp("created_at").defaultTo(knex.fn.now());
       });
+    }
+  });
+
     
 };
 
