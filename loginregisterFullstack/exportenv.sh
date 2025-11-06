@@ -1,0 +1,10 @@
+export NODE_ENV="staging"
+export DEV_PORT=55505
+export VITE_API_URL="http://127.0.0.1:55505/api"
+export JWT_SECRET="JLSDJFLJljksdfjlasjw3223r2lkjfwlejsjdfc"
+export exportexportBCRYPT_ROUNDS=8
+export DB_USER="rivit"
+export DB_PASSWORD="PaveditGlee283"
+export DB_PORT=5432
+export DB_NAME="weareusers"
+export DB_HOST="127.0.0.1"
