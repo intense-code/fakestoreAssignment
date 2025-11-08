@@ -1,5 +1,8 @@
-const knex = require("knex");
-const config = require("../knexfile.js");
+
+const knex = require('knex')({
+  client: 'pg',
+  connection: process.env.DATABASE_URL,
+});
 
 const environment = process.env.NODE_ENV || "development";
 
@@ -18,5 +21,12 @@ const dbConfig = {
   },
   acquireConnectionTimeout: 30000
 };
-
-module.exports = knex(dbConfig);
+exports.handler = async (req, res) => {
+  try {
+    const users = await knex('users').select('*');
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+module.exports = knex();

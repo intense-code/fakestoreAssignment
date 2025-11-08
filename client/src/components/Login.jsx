@@ -46,7 +46,7 @@ const Login = () => {
     console.log("🌐 IP Address:", userInfo.ip);
 
     // Use regular axios for login (no token needed)
-    axios.post("http://127.0.0.1:55505/api/auth/login", credentials)
+    axios.post("/api/auth/login", credentials)
       .then(res => {
         console.log("✅ Login successful:", res.data);
         

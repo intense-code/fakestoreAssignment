@@ -3,7 +3,7 @@
 import axios from "axios";
 import { logout } from "./auth";
 
-const api = axios.create({ baseURL: "http://127.0.0.1:55505/api" }); // or env var
+const api = axios.create({ baseURL: "https://ujhbpfbdsfflighgqchg.supabase.co/api" }); // or env var
 
 api.interceptors.request.use((config) => {
   const t = localStorage.getItem("token");
