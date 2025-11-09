@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "http://127.0.0.1:55505" ,
+  "proxy": "https://ujhbpfbdsfflighgqchg.supabase.co:55505" ,
   "scripts": {
     "dev": "vite",
     "build": "vite build",

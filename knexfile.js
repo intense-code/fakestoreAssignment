@@ -73,7 +73,7 @@ module.exports = {
     directory: './migrations',
   },
         seeds: {
-          directory: './db/seeds' // Path to your seed files
+          directory: './seeds' // Path to your seed files
         }
   }
 }

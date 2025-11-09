@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const db = require("../../db/connection.js");
+const db = require("../../connection.js");
 
 const restricted = async (req, res, next) => {
   try {

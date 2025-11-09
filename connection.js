@@ -1,32 +1,31 @@
 
-const knex = require('knex')({
-  client: 'pg',
-  connection: process.env.DATABASE_URL,
-});
+// const knex = require('knex')({
+//   client: 'pg',
+//   connection: process.env.DATABASE_URL,
+// });
 
-const environment = process.env.NODE_ENV || "development";
+// exports.handler = async (req, res) => {
+//   try {
+//     const users = await knex('users').select('*');
+//     res.status(200).json(users);
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };
+// module.exports = knex();
 
-// Add better connection pooling for SQLite
-const dbConfig = {
-  ...config[environment],
-  pool: {
-    min: 0,
-    max: 1, // SQLite works better with single connection
-    acquireTimeoutMillis: 30000,
-    createTimeoutMillis: 30000,
-    destroyTimeoutMillis: 5000,
-    idleTimeoutMillis: 30000,
-    reapIntervalMillis: 1000,
-    createRetryIntervalMillis: 100,
-  },
-  acquireConnectionTimeout: 30000
-};
+
+const { createClient } = require('@supabase/supabase-js');
+const knex = require('knex')({ client: 'pg', connection: process.env.DATABASE_URL });
+
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+
 exports.handler = async (req, res) => {
-  try {
-    const users = await knex('users').select('*');
-    res.status(200).json(users);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  const token = req.headers.authorization?.split(' ')[1];
+  const { data: user } = await supabase.auth.getUser(token);
+
+  if (!user) return res.status(401).json({ error: 'Unauthorized' });
+
+  const profile = await knex('profiles').where('email', user.email).first();
+  res.json({ user, profile });
 };
-module.exports = knex();
