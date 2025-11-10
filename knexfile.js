@@ -5,19 +5,19 @@
  */
 module.exports = {
 
-  development: {
-    client: 'sqlite3',
-    connection: {
-      filename: './dev.sqlite3'
-    },
-    useNullAsDefault: true, // SQLite does not support inserting default values, so we need to set this to true
-        migrations: {
-          directory: './db/migrations' // Path to your migration files
-        },
-        seeds: {
-          directory: './db/seeds' // Path to your seed files
-        }
-  },
+  // development: {
+  //   client: 'sqlite3',
+  //   connection: {
+  //     filename: './dev.sqlite3'
+  //   },
+  //   useNullAsDefault: true, // SQLite does not support inserting default values, so we need to set this to true
+  //       migrations: {
+  //         directory: './db/migrations' // Path to your migration files
+  //       },
+  //       seeds: {
+  //         directory: './db/seeds' // Path to your seed files
+  //       }
+  // },
 
   staging: {
     client: 'postgresql',
