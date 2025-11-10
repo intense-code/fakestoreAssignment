@@ -1,5 +1,5 @@
 // api/users/users-model.js
-const db = require("../../db/connection.js");
+const db = require("../../connection.js");
 const { randomUUID } = require("node:crypto");
 const jwt = require("jsonwebtoken");
 

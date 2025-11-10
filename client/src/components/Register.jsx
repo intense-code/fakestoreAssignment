@@ -24,7 +24,7 @@ const Register = () => {
     console.log("📤 Sending registration data:", credentials);
 
     // Use regular axios (not AxiosWithAuth) since registration doesn't need a token
-    axios.post("http://127.0.0.1:55505/api/auth/register", credentials)
+    axios.post("/api/auth/register", credentials)
       .then(res => {
         console.log("✅ Registration response:", res.data);
         alert("Registration successful! Please login.");

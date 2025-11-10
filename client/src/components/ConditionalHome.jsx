@@ -21,7 +21,7 @@ const ConditionalHome = () => {
 
       try {
         // Verify token is still valid by making a request
-        const response = await AxiosWithAuth().get('/users/me');
+        const response = await AxiosWithAuth().get('/api/users/me');
         setUser(response.data);
         setIsAuthenticated(true);
       } catch (err) {

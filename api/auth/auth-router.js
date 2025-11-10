@@ -161,7 +161,7 @@ router.post("/register", async (req, res) => {
     
     return res.status(500).json({ 
       message: "Registration failed", 
-      error: process.env.NODE_ENV === 'development' ? msg : undefined
+      error: process.env.NODE_ENV === 'production' ? msg : undefined
     });
   }
 });

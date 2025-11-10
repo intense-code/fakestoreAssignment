@@ -42,20 +42,41 @@ module.exports = {
         }
   },
 
+//   production: {
+//     client: 'postgresql',
+//     connection: {
+//       database: 'my_db',
+//       user:     'username',
+//       password: 'password'
+//     },
+//     pool: {
+//       min: 2,
+//       max: 10
+//     },
+//     migrations: {
+//       tableName: 'knex_migrations'
+//     }
+//   }
+
+// };
+
   production: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+    client: 'pg',
+    connection: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false  // Important for Supabase
     },
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
-    }
+    tableName: 'knex_migrations',
+    schemaName: 'public',  // <--- new schema
+    directory: './migrations',
+  },
+        seeds: {
+          directory: './seeds' // Path to your seed files
+        }
   }
-
-};
+}

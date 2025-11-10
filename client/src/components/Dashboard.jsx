@@ -14,7 +14,7 @@ const Dashboard = () => {
 
     // Get current session info from API
     AxiosWithAuth()
-      .get("/auth/debug/my-session")
+      .get("/api/auth/debug/my-session")
       .then(res => {
         console.log("Session info:", res.data);
         setSessionInfo(res.data);

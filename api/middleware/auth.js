@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const db = require("../../db/connection.js");
+const db = require("../../connection.js");
 
 const restricted = async (req, res, next) => {
   try {
@@ -75,23 +75,9 @@ const touchSession = async (req, res, next) => {
     const jti = req.user?.jti;
     if (jti) {
       console.log("👆 Touching session:", jti);
-      console.log("👆 Current time:", new Date().toISOString());
-      
-      const updateResult = await db("sessions")
+      await db("sessions")
         .where({ id: jti })
         .update({ last_seen_at: new Date() });
-      
-      console.log("👆 Session touch result (rows affected):", updateResult);
-      
-      // Verify the update worked
-      const updatedSession = await db("sessions")
-        .where({ id: jti })
-        .select("last_seen_at", "created_at", "expires_at")
-        .first();
-      
-      console.log("👆 Updated session data:", updatedSession);
-    } else {
-      console.log("❌ No jti found in user token for touchSession");
     }
     next();
   } catch (error) {
