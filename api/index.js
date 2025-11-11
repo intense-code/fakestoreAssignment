@@ -2,16 +2,23 @@ require("dotenv").config();
 
 const server = require("./server.js");
 
-const { createClient } = require('@supabase/supabase-js');
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
-
 // Serverless handler (kept for Vercel / serverless deployments)
+// Using direct database connection instead of Supabase client to avoid dependency issues
 async function handler(req, res) {
   if (req.method === 'GET') {
-    const { data, error } = await supabase.from('weareusers').select('*');
-    if (error) return res.status(500).json({ error });
-    return res.status(200).json(data);
+    try {
+      // Use Knex for database queries instead of Supabase client
+      const db = require("../connection.js");
+      const data = await db('users').select('*');
+      return res.status(200).json(data);
+    } catch (error) {
+      console.error('Database error:', error);
+      return res.status(500).json({ error: error.message });
+    }
   }
+  
+  // For other HTTP methods, just return the Express app response
+  return server(req, res);
 }
 
 // If this file is run directly (`node api/index.js`) start the Express app.
