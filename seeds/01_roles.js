@@ -3,7 +3,10 @@
  * @returns { Promise<void> } 
  */
 exports.seed = async function(knex) {
-  // Deletes ALL existing entries first
+  // Delete users first to avoid foreign key constraint issues
+  await knex('users').del();
+  
+  // Then delete roles
   await knex('roles').del();
   
   const roles = [

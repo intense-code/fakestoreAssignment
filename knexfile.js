@@ -3,6 +3,7 @@
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
+require('dotenv').config();
 module.exports = {
 
   // development: {
@@ -62,9 +63,11 @@ module.exports = {
 
   production: {
     client: 'pg',
-    connection: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false  // Important for Supabase
+    connection: {
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false  // Important for Supabase
+      }
     },
     pool: {
       min: 2,
