@@ -7,7 +7,8 @@ const { restricted, touchSession } = require("../middleware/restricted.js");
 // Add database connection for debug route
 const knex = require("knex");
 const knexConfig = require("../../knexfile");
-const db = knex(knexConfig.development);
+const environment = process.env.NODE_ENV || 'development';
+const db = knex(knexConfig[environment]);
 
 // Simple test route - no auth needed
 router.get("/test", (req, res) => {
